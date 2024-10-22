@@ -1,10 +1,11 @@
 import whisper
 import arrow
 
-# ????????????????
+
 def excute(model_name,file_path,start_time):
     model = whisper.load_model(model_name)
     result = model.transcribe(file_path)
+    print(result)
     for segment in result["segments"]:
         now = arrow.get(start_time)
         start = now.shift(seconds=segment["start"]).format("YYYY-MM-DD HH:mm:ss")
@@ -12,5 +13,5 @@ def excute(model_name,file_path,start_time):
         print("?"+start+"->" +end+"?:"+segment["text"])
 
 if __name__ == '__main__':
-    excute("base","1001.mp3","2022-10-24 16:23:00")
+    excute("base","/data/zfei/code/FunASR/material/10s.wav","2024-10-21 13:00:00")
 
